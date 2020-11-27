@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/songs"
+        android:title="Songs"/>
+    <item
+        android:id="@+id/albums"
+        android:title="Albums"/>
+    <item
+        android:id="@+id/queue"
+        android:title="QUEUE"
+        app:showAsAction="ifRoom"/>
+
+</menu>
