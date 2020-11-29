@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var songQueue: Array<String> = emptyArray()
 
-        private var itemList = arrayOf(
+        var itemList = arrayOf(
                 "Bad Apple",
                 "No Life Queen",
                 "Moon Song",
@@ -56,13 +57,13 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.honeyworks
         )
 
-        val album_names = arrayOf(
+        var album_names = arrayOf(
                 "Touhou Project",
                 "Vocaloid",
                 "Honeyworks"
         )
 
-        val touhouProject = arrayOf(
+        var touhouProject = arrayOf(
                 "Bad Apple",
                 "No Life Queen",
                 "Moon Song",
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 "Mischievous Sensation"
         )
 
-        val vocaloid = arrayOf(
+        var vocaloid = arrayOf(
                 "Deep Sea Girl",
                 "Assassin Princess",
                 "Echo",
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 "Love Trial"
         )
 
-        val honeyworks = arrayOf(
+        var honeyworks = arrayOf(
                 "Mona",
                 "Monday's Melancholy",
                 "Watashi no tenshi ",
@@ -101,7 +102,12 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.add2queue->{
                 songQueue = append(songQueue, itemList[info.position])
-                Toast.makeText(applicationContext, "Added to queue", Toast.LENGTH_SHORT).show()
+                val snackBar = Snackbar.make(listView!!.findViewById(R.id.context_list_view), "Song added to queue", Snackbar.LENGTH_LONG)
+                snackBar.setAction("See Queue"){
+                    val added2queue = Intent(this, add2queue::class.java)
+                    startActivity(added2queue)
+                }
+                snackBar.show()
                 return true
             }
             else->return super.onContextItemSelected(item)
@@ -118,8 +124,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.songs ->{
-                Toast.makeText(applicationContext, "Song", Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(applicationContext, "Already in song list", Toast.LENGTH_SHORT).show()
             }
             R.id.albums ->{
                 val albumViewList = Intent(this, album::class.java)

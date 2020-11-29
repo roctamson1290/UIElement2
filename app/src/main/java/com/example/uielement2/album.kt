@@ -41,7 +41,7 @@ class album : AppCompatActivity() {
 
     class CustomAdapter(
             var itemModel: ArrayList<Modal>,
-            var context: Context
+            context: Context
     ) : BaseAdapter(){
 
         var layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
